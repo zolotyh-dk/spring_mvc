@@ -1,19 +1,24 @@
 package com.zolotyh.spring.mvc;
 
+import javax.validation.constraints.*;
 import java.util.HashMap;
 
 public class Employee {
+    @Size(min = 2, message = "Name must contain at least 2 characters")
     private String name;
+    @NotBlank(message = "Required field")
     private String surname;
+    @Min(value = 500, message = "Salary must be greater than 499")
+    @Max(value = 1000, message = "Salary must be lower then 1001")
     private int salary;
     private String department;
     private HashMap<String, String> departments;
     private String car;
     private HashMap<String, String> cars;
     private String[] languages;
-
     private HashMap<String, String> languageList;
-
+    @Pattern(regexp = "\\d{2}-\\d{2}-\\d{2}", message = "Use pattern XX-XX-XX")
+    private String phoneNumber;
 
     public Employee() {
         departments = new HashMap<>();
@@ -102,5 +107,13 @@ public class Employee {
 
     public void setLanguageList(HashMap<String, String> languageList) {
         this.languageList = languageList;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
