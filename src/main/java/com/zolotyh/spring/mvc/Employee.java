@@ -1,5 +1,7 @@
 package com.zolotyh.spring.mvc;
 
+import com.zolotyh.spring.mvc.validation.CheckEmail;
+
 import javax.validation.constraints.*;
 import java.util.HashMap;
 
@@ -19,6 +21,8 @@ public class Employee {
     private HashMap<String, String> languageList;
     @Pattern(regexp = "\\d{2}-\\d{2}-\\d{2}", message = "Use pattern XX-XX-XX")
     private String phoneNumber;
+    @CheckEmail(value = "abc.com", message = "Email must ends with abc.com")
+    private String email;
 
     public Employee() {
         departments = new HashMap<>();
@@ -115,5 +119,13 @@ public class Employee {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
